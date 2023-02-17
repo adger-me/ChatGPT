@@ -1,7 +1,7 @@
 # chat-rebot
 
 部署版本需要python3.9
-pip3 install -r requirements.txt
+安装命令： pip3 install -r requirements.txt
 
 该机器人使用了openIM的回调功能，关于该功能具体查看openIM官网的第三方回调说明文档。
 需要修改openIM服务端的callback配置，打开callbackBeforeSendSingleMsg配置，将他的enable设置为true。
