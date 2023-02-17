@@ -48,7 +48,10 @@ class Consumer:
                 for i in historys:
                     s1.append(i.decode("utf-8"))
                 gpt_resp = await self.chat_gpt.ask_chat_gpt_context(content, s1)
-           
+            if len(gpt_resp) > 0:
+                if gpt_resp[0] == "?":
+                    gpt_resp = gpt_resp[1:]
+            gpt_resp = gpt_resp.strip()
             await cache.redis_client.client.lpush(cache.redis_client.get_key(send_id), content, gpt_resp)
             await cache.redis_client.client.expire(cache.redis_client.get_key(send_id), 200)
             await self.open_im_api.send_msg(recv_id=send_id, content=gpt_resp)
