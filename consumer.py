@@ -49,7 +49,7 @@ class Consumer:
                     s1.append(i.decode("utf-8"))
                 gpt_resp = await self.chat_gpt.ask_chat_gpt_context(content, s1)
             if len(gpt_resp) > 0:
-                if gpt_resp[0] == "?":
+                if gpt_resp[0] == "?" or gpt_resp[0] == "？":
                     gpt_resp = gpt_resp[1:]
             gpt_resp = gpt_resp.strip()
             await cache.redis_client.client.lpush(cache.redis_client.get_key(send_id), content, gpt_resp)
